@@ -3,32 +3,23 @@ import HomePage from "./pages/HomePage/HomePage";
 import SeatsPage from "./pages/SeatsPage/SeatsPage";
 import SessionsPage from "./pages/SessionsPage/SessionsPage";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-const routes = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage/>,
-  },
-  {
-    path: "/sessoes/:idFilme",
-    element: <SessionsPage/>,
-  },
-  {
-    path: "/assentos/:idSessao",
-    element: <SeatsPage/>,
-  },
-  {
-    path: "/sucesso",
-    element: <SuccessPage/>,
-  },
-]);
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useState } from "react";
 
 export default function App() {
+  const [ultimaReserva, setUltimaReserva] = useState(null)
+  
   return (
     <>
+      <BrowserRouter>
       <NavContainer>CINEFLEX</NavContainer>
-      <RouterProvider router={routes} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/sessoes/:idFilme" element={<SessionsPage/>} />
+        <Route path="/assentos/:idSessao"element={<SeatsPage salvarReserva={setUltimaReserva}/>} />
+        <Route path="/sucesso" element={<SuccessPage reserva={ultimaReserva}/>} />
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }

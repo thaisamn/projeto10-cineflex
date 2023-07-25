@@ -39,6 +39,7 @@ export const listarCadeiras = async (sessaoId) => {
 }
  */
 export const reservarCadeiras = async (body) => {
+  console.log(body)
   const { data } = await axios.post(`${baseURL}/seats/book-many`, body, config);
   return data;
 };
