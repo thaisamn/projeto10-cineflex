@@ -46,7 +46,7 @@ const FormContainer = styled.div`
   margin: 20px 0;
   font-size: 18px;
   button {
-    margin-top: 50px;
+    margin-top: 50 px;
     width: 225px;
     height: 42px;
     align-self: center;
