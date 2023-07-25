@@ -1,6 +1,9 @@
+import { useEffect } from "react"
 import styled from "styled-components"
 
 export default function SessionsPage() {
+    const [idFilme, setIdFilme] = useState(null)
+    useEffect(function (){ }, [idFilme])
 
     return (
         <PageContainer>

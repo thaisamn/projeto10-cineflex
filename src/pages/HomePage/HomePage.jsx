@@ -1,26 +1,36 @@
+import { useEffect } from "react"
+import { useState } from "react"
 import styled from "styled-components"
+import { listarFilmes } from "../../components/api"
+import { useNavigate } from "react-router-dom"
 
 export default function HomePage() {
+    const [movies, setMovies] = useState([])
+    const navigate = useNavigate();
+    const atualizarFilmes = async () => {
+        const filmes  = await listarFilmes();
+        setMovies(filmes)
+    }
+    useEffect(() => {
+        atualizarFilmes()
+     }, [])
+
+     const selecionarFilme = (filmeId) => {
+        navigate(`/sessoes/${filmeId}`)
+     }
+    
     return (
         <PageContainer>
             Selecione o filme
 
             <ListContainer>
-                <MovieContainer>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster"/>
-                </MovieContainer>
-
-                <MovieContainer>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster"/>
-                </MovieContainer>
-
-                <MovieContainer>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster"/>
-                </MovieContainer>
-
-                <MovieContainer>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster"/>
-                </MovieContainer>
+                {movies.map(movie => {
+                    return (
+                        <MovieContainer onClick={() => selecionarFilme(movie.id)}> 
+                            <img src={movie.posterURL} alt={movie.title} />
+                        </MovieContainer>
+                    )
+                })}
             </ListContainer>
 
         </PageContainer>
@@ -54,6 +64,7 @@ const MovieContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin: 10px;
+    cursor: pointer;
     img {
         width: 130px;
         height: 190px;
