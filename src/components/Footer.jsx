@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function Footer({ poster, titulo, sessao }) {
   return (
-    <FooterContainer>
+    <FooterContainer data-test="footer">
       <div>
         <img src={poster} alt="poster" />
       </div>

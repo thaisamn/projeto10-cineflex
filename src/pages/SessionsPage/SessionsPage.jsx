@@ -29,10 +29,10 @@ export default function SessionsPage() {
       <div>
         {sessoes.map((sessao) => {
           return (
-            <SessionContainer>
+            <SessionContainer data-test="movie-day" >
               {`${sessao.weekday} - ${sessao.date}`}
               <ButtonsContainer>
-                {sessao.showtimes.map(showtime =>  <button onClick={() => navigate(`/assentos/${showtime.id}`)}>{showtime.name}</button>)}
+                {sessao.showtimes.map(showtime =>  <button data-test="showtime"  onClick={() => navigate(`/assentos/${showtime.id}`)}>{showtime.name}</button>)}
               </ButtonsContainer>
             </SessionContainer>
           );
@@ -77,6 +77,14 @@ const ButtonsContainer = styled.div`
   margin: 20px 0;
   button {
     margin-right: 20px;
+    width: 82px;
+    height: 42px;
+    background-color: #E8833A;
+    color: white;
+    border: none;
+    font-family: "Roboto";
+  font-size: 18px;
+  border-radius: 3px
   }
   a {
     text-decoration: none;

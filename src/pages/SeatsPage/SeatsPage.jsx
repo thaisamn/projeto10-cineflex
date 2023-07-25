@@ -59,6 +59,7 @@ export default function SeatsPage({ salvarReserva }) {
       <SeatsContainer>
         {cadeiras.map((cadeira, index) => (
           <SeatItem
+          data-test="seat"
             isAvailable={cadeira.isAvailable}
             isSelected={cadeira.isSelected}
             onClick={() => selecionarAssentos(index)}
